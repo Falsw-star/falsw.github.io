@@ -48,19 +48,26 @@
         .click-bar {
         	background-color: rgba(58, 59, 59, 0.8);
         	width:200px;
-            	height: 100%;
+            height: 100%;
         	position:fixed;
         	left: -200px;
-            	backdrop-filter: blur(20px);
-            	z-index: 9;
-            	border-right: solid 1px;
-            	border-color: rgb(132, 132, 132);
+            backdrop-filter: blur(20px);
+            z-index: 9;
+            border-right: solid 1px;
+            border-color: rgb(132, 132, 132);
         }
         .shortline{
             background-color: brown;
             height: 5px;
             width: 60px;
             display: inline-block;
+            transition: 1s;
+        }
+        .shortline:hover {
+            background-color: rgb(198, 6, 6);
+            box-shadow: 0px 0px 10px rgb(198, 6, 6),
+                        0px 0px 5px rgb(198, 6, 6),
+                        0px 0px 15px rgb(198, 6, 6);
         }
         .guide {
             background-color: aliceblue;
@@ -97,10 +104,31 @@
         .introdiv div {
             font-size: smaller;
         }
+        .mainshortline {
+            background-color: brown;
+            height: 5px;
+            width: 60px;
+            display: inline-block;
+            animation: breath 5s ease infinite;
+        }
+        @keyframes breath {
+            0% {
+                background-color: brown;
+                box-shadow: none;
+            }
+            50% {
+                background-color: rgb(198, 6, 6);
+                box-shadow: 0px 0px 5px rgb(198, 6, 6);
+            }
+            100% {
+                background-color: brown;
+                box-shadow: none;
+            }
+        }
     </style>
 </head>
 <body>
-    <button class="btn"><img src="./static/tag.png" height="30" alt=""></button>
+    <button class="btn"><img src="./static/tag.png" style="height: 30px;"></button>
     <div class="click-bar">
         <ul>
             <h1 style="color: aliceblue;">导航</h1>
@@ -114,8 +142,8 @@
     </div>
     <div id="cover" style="text-align: center; height: 100%; position: relative;">
         <div id="title" style="padding-top: 200px; position: fixed; width: 100%; z-index: -1;">
-            <div style="color: azure; font-size: xx-large;">&nbsp回归本心.</div>
-            <div class="shortline"></div>
+            <div style="color: azure; font-size: xx-large; text-shadow: 0px 0px 10px rgb(245, 245, 245);">&nbsp回归本心.</div>
+            <div class="mainshortline"></div>
             <div style="color: rgba(193, 192, 191, 0.335);">这 里 是 F a l s w 的 个 人 主 页</div>
         </div>
         <div style="text-align: center; color: rgba(240, 248, 255, 0.495);">
@@ -133,7 +161,7 @@
         <p>C#、CSS学习ing</p>
     </div>
 
-    <div id="thiswebsite" style="background-color:rgb(226, 232, 238); height: 100%; z-index: 7; text-align: center;">
+    <div id="thiswebsite" style="background-color:rgb(226, 232, 238); height: 750px; z-index: 7; text-align: center;">
         <div style="text-align: center; padding-top: 100px;"><h1>这个网站</h1></div>
         <div class="shortline"></div>
         <p>如你所见</p>
@@ -141,9 +169,12 @@
         <p>网站不大</p>
         <p>只是一时兴起罢了</p>
         <p>接下来会给网站陆续加上很多好玩的qwq！</p>
-        <p>这个网站并非是购买的服务器</p>
-        <p>而是用内网穿透架设在Falsw家的电脑上</p>
+        <p>这个网站并非购买服务器</p>
+        <p>在一开始，是用内网穿透架设在本人家中的电脑上</p>
         <p>感谢<a href="https://ngrok.cc/" style="color: darkblue;">sunny-ngrok</a>的强力支持！</p>
+        <p>但是现在我摆烂了</p>
+        <p>所以现在是使用GitHub Pages托管</p>
+        <p>感谢<a href="https://github.io/" style="color: darkblue;">Github.io</a>的支持！</p>
     </div>
 
     <div class="guide" id="guide">
@@ -211,7 +242,7 @@
                 state = 1
             } else {
                 clickbar.animate({
-                'left': -clickbar.width()
+                    'left': -clickbar.width()
                 });
                 button.animate({
                     'left': -100
