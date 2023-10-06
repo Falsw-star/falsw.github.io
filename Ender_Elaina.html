@@ -31,16 +31,21 @@
             height: 60px;
             width: 60px;
             border-radius: 100px;
-            border: solid 1px;
-            border-color: brown;
+            border: solid 2px;
+            border-color: rgb(104, 0, 104);
             display: flexbox;
             z-index: 9;
             position: relative;
-            transition: box-shadow 1s ease;
+            box-shadow: none;
+            transition: 1s ease;
         }
-        .head :hover {
-            box-shadow: 0px 0px 100px 50px rgb(136, 18, 233), 0px 0px 20px black;
-            transition: box-shadow 1s ease;
+        .head:hover {
+            box-shadow: 0px 0px 100px 50px rgb(239, 27, 239), 
+                        0px 0px 20px rgb(239, 27, 239),
+                        0px 0px 10px rgb(241, 83, 241),
+                        0px 0px 5px rgb(241, 186, 241),
+                        0px 0px 10px black;
+            border-color: rgb(255, 225, 255);
         }
         .head img {
             height: 100%;
@@ -87,11 +92,18 @@
             padding-top: 10%;
             font-size: 50px;
         }
-        .shortline{
+        .shortline {
             background-color: rgb(104, 0, 104);
             height: 5px;
             width: 200px;
             display: inline-block;
+            transition: 1s;
+        }
+        .shortline:hover {
+            background-color: rgb(239, 27, 239);
+            box-shadow: 0px 0px 5px rgb(239, 27, 239),
+                        0px 0px 10px rgb(239, 27, 239),
+                        0px 0px 20px rgb(239, 27, 239);
         }
         .enderhead {
             display: inline-block;
