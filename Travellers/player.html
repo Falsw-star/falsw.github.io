@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>-Travellers-</title>
+
+<style>
+@font-face {
+  font-family: 'Josefin Slab';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./static/font.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+body ,html {
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+}
+#tip {
+	width: 100%;
+	text-align: center;
+}
+#audios {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	flex-direction: column;
+}
+#start {
+	background-color: black;
+	background-image: url(./images/favicon.6924d947.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 80%;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: rgb(238, 132, 3);
+	font-size: 50px;
+	position: relative;
+	height: 100%;
+	width: 100%;
+	font-family: 'Josefin Slab';
+	text-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
+.tracks {
+	background-color: black;
+	width: 100%;
+	text-align: center;
+	align-items: center;
+	font-family: 'Josefin Slab';
+}
+#title {
+	text-align: center;
+	color: rgb(238, 132, 3);
+	font-size: 40px;
+	font-family: 'Josefin Slab';
+	padding-top: 20px;
+}
+#title p {
+	font-size: 20px;
+	color: rgb(238, 132, 3);
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.track {
+	height: auto;
+	align-items: center;
+	text-align: center;
+	width: 600px;
+	margin: 0 auto;
+}
+.top {
+	height: 200px;
+	position: relative;
+}
+.bottom {
+	height: 200px;
+	position: absolute;
+}
+.imgdiv-left {
+	height: 200px;
+	width: 200px;
+	display: inline-block;
+}
+</style>
+</head>
+<body>
+	<div id="start">OuterWilds - Travellers</div>
+	<div id="tracks" class="tracks">
+		<div id="title">- - - OuterWilds - Travellers - - -<p>一 场 跨 越 <strong style="text-shadow: 0px 0px 30px rgb(238, 203, 3);">2 8 万 年</strong> 的 史 诗 和 <strong style="text-shadow: 0px 0px 30px rgb(238, 203, 3);">2 2 分 钟</strong> 的 故 事</p></div>
+		<div class="track">
+			<div class="imgdiv-left">
+				<img src="./images/banjo.ww.png" class="bottom">
+				<img src="./images/banjo.7eb78f61.png" id="banjo" class="top">
+			</div>
+		</div>	
+		<div class="track">
+			<div class="imgdiv">
+				<img src="./images/harmonica.ww.png" class="bottom">
+				<img src="./images/harmonica.7b02ce2d.png" id="harmonica" class="top">
+			</div>
+		</div>
+		<div class="track">
+			<div class="imgdiv">
+				<img src="./images/flute.ww.png" class="bottom">
+				<img src="./images/flute.f8e09398.png"  id="flute" class="top">
+			</div>
+		</div>
+		<div class="track">
+			<div class="imgdiv">
+				<img src="./images/drums.ww.png" class="bottom">
+				<img src="./images/drums.48cbee6e.png" id="drums" class="top">
+			</div>
+		</div>
+		<div class="track">
+			<div class="imgdiv">
+				<img src="./images/whistling.ww.png" class="bottom">
+				<img src="./images/whistling.6d53ab6e.png" id="whistling" class="top">
+			</div>
+		</div>
+		<div class="track">
+			<div class="imgdiv">
+				<img src="./images/piano.ww.png" class="bottom">
+				<img src="./images/piano.5063b504.png" id="piano" class="top">
+			</div>
+		</div>
+		<div class="track">
+			<div class="imgdiv">
+				<img src="./images/stranger.ww.png" class="bottom">
+				<img src="./images/stranger.8a6e2fd3.png" id="stranger" class="top">
+			</div>
+		</div>
+	</div>
+</body>
+<div id="audios"></div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+var maAudios = document.getElementById("audios");
+var maAudioNames = ["banjo", "drums", "flute", "harmonica", "piano", "stranger", "whistling"];
+var maAudioList = [];
+for (let n of maAudioNames) {
+	let a = new Audio(n+".solo.flac");
+	a.mediaGroup = "audios";
+	a.controls = "controls";
+	maAudioList.push(a);
+}
+var state = 0;
+var little_1 = 0;
+var dic = new Array();
+var tracks = document.getElementById("tracks");
+window.onload = () => {
+	state = 1;
+	tracks.style.display = 'none';
+	for(let a of maAudioList) {
+		dic[little_1] = a;
+		dic[little_1].volume = 0;
+		little_1++;
+	}
+	little_1 = 0;
+} 
+
+var backaudio = new Audio("background.mp3");
+
+var start = document.getElementById("start");
+var tracks = document.getElementById("tracks");
+start.onclick = () => {
+	if(state === 1) {
+		for(let a of maAudioList) {
+			a.play();
+		}
+		backaudio.play();
+		backer(backaudio);
+	}
+	start.style.display = 'none';
+	tracks.style.display = 'block';
+}
+
+
+
+function backer() {
+	var duration = backaudio.duration;
+	var back = setInterval(function() {
+		var currentTime = backaudio.currentTime;
+		console.log(duration,currentTime);
+		if(currentTime > 41.67) {
+			backaudio.currentTime = 0;
+			backaudio.play();
+			for(let a of maAudioList) {
+				a.currentTime = 0;
+			}
+		}
+	},1)
+}
+
+
+
+var fade = false;
+function fadeIn(audio,instrument) {
+	if(fade) return;
+	fade = true;
+	var repeat = 100;
+	var timer = setInterval(function() {
+		if(repeat == 0) {
+			clearInterval(timer);
+		} else {
+			repeat--;
+			audio.volume += 0.01;
+			instrument.style.opacity = audio.volume + "";
+		}
+	}, 10);
+  	fade = false;
+}
+
+function fadeOut(audio,instrument) {
+	fade = true;
+	var repeat = 100;
+	var timer = setInterval(function() {
+		if(repeat == 0) {
+			clearInterval(timer);
+		} else {
+			repeat--;
+			audio.volume -= 0.01;
+			instrument.style.opacity = audio.volume + "";
+		}
+	}, 10);
+  	fade = false;
+}
+var banjo = document.getElementById("banjo");
+banjo.style.opacity = '0';
+banjo.addEventListener('click',function() {
+		if(Math.round(dic[0].volume) === 0) {
+			fadeIn(dic[0],banjo);
+		} else {
+			fadeOut(dic[0],banjo);
+		}
+});
+var harmonica = document.getElementById("harmonica");
+harmonica.style.opacity = '0';
+harmonica.addEventListener('click',function() {
+		if(Math.round(dic[3].volume) === 0) {
+			fadeIn(dic[3],harmonica);
+		} else {
+			fadeOut(dic[3],harmonica);
+		}
+});
+var flute = document.getElementById("flute");
+flute.style.opacity = '0';
+flute.addEventListener('click',function() {
+		if(Math.round(dic[2].volume) === 0) {
+			fadeIn(dic[2],flute);
+		} else {
+			fadeOut(dic[2],flute);
+		}
+});
+var drums = document.getElementById("drums");
+drums.style.opacity = '0';
+drums.addEventListener('click',function() {
+		if(Math.round(dic[1].volume) === 0) {
+			fadeIn(dic[1],drums);
+		} else {
+			fadeOut(dic[1],drums);
+		}
+});
+var whistling = document.getElementById("whistling");
+whistling.style.opacity = '0';
+whistling.addEventListener('click',function() {
+		if(Math.round(dic[6].volume) === 0) {
+			fadeIn(dic[6],whistling);
+		} else {
+			fadeOut(dic[6],whistling);
+		}
+});
+var piano = document.getElementById("piano");
+piano.style.opacity = '0';
+piano.addEventListener('click',function() {
+		if(Math.round(dic[4].volume) === 0) {
+			fadeIn(dic[4],piano);
+		} else {
+			fadeOut(dic[4],piano);
+		}
+});
+var stranger = document.getElementById("stranger");
+stranger.style.opacity = '0';
+stranger.addEventListener('click',function() {
+		if(Math.round(dic[5].volume) === 0) {
+			fadeIn(dic[5],stranger);
+		} else {
+			fadeOut(dic[5],stranger);
+		}
+});
+</script>
+</html>
