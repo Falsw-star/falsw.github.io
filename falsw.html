@@ -72,11 +72,15 @@
         }
         @keyframes backgroundScroll {
 		0%{background-position:      50%               50%         ;}
-		to{background-position: calc(50% + 143px) calc(50% + 143px);}
+		to{background-position: calc(50% + 60px) calc(50% + 60px);}
 	    }
         .enderelaina {
-            background-image: url(./enderelaina/enderhead.webp);
+            background-image: url(./static/backender.png);
             background-repeat: round space;
+            animation: backgroundScroll 5s linear infinite;
+            background-color: rgb(55,40,68);
+            box-shadow: inset 2px -5px 10px rgba(55,40,68,0.4),
+                        inset 0px -2px 5px #1b0e25;
         }
         .backfalsw {
             font-family: 'crunch';
@@ -91,6 +95,31 @@
             opacity: 0.2;
             text-shadow: 0px 0px 10px#ffffff;
         }
+        .elainatitle {
+            display: none;
+            position: relative;
+            font-family: 'Josefin Slab';
+            margin: 0;
+        }
+        .elainatitle img {
+            height: 100px;
+            transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
+        }
+        .elainatitle img:hover {
+            transform: rotate(180deg);
+        }
+        .enderelaina p {
+            text-shadow: 1px 1px 0px #211d24,
+                         1px -1px 0px #ca8df9;
+        }
+        .pager-cover {
+            font-family: 'Josefin Slab';
+            font-size: smaller;
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body id="body">
@@ -99,6 +128,11 @@
         <p id="hitokoto_text">Falsw</p>
         <p style="text-align: right; font-size: medium;" id="hitokoto_from"></p>
     </div>
+    <div id="elainatitle" class="elainatitle">
+        <a href="./Ender_Elaina"><img src="./static/elainahat.png"></a>
+        <p>Ender_Elaina</p>
+    </div>
+    <div id="pager" class="pager-cover">NEXTPAGE</div>
 </body>
 <script>
     function hitokoto (hitokoto_text,hitokoto_from) {
@@ -113,8 +147,6 @@
                 } else {
                     hitokoto_from.innerText = "—— " + data.from_who + " ·" + "《" + data.from + "》";
                 }
-
-                
             }
         }
         xhr.send();
@@ -137,5 +169,19 @@
         backfalsw.style.fontSize = backfalsw.clientHeight + "px";
         backfalsw.style.lineHeight = backfalsw.clientHeight + "px";
     });
+    var pages = 'cover';
+    var pager = document.getElementById("pager");
+    var elainatitle = document.getElementById("elainatitle");
+    pager.onclick = () => {
+        if(pages === 'cover') {
+            body.className = "enderelaina";
+            cover.style.display = 'none';
+            elainatitle.style.display = 'block';
+            pager.style.textShadow = "1px 1px 0px #211d24, 1px -1px 0px #ca8df9";
+            pages = 'enderelaina';
+        } else if (pages === 'enderelaina') {
+
+        }
+    }
 </script>
 </html>
