@@ -22,7 +22,6 @@
             background-image: 
                 linear-gradient(0deg, rgba(255,255,255,0.40) 0%, rgba(24,20,37,0.50) 100%),
                 radial-gradient(at 50% 87%, rgba(255,255,255,0.30) 0%, rgba(24,20,37,0.40) 100%);
-    
             background-blend-mode: multiply,normal;
         }
         html {
@@ -65,10 +64,7 @@
             height: 100%;
             overflow-y: scroll;
             -webkit-scrollbar: 0px;
-        }
-        .homepage {
-            margin: 30px auto;
-            display: grid;
+            text-align: center;
         }
         @keyframes backgroundScroll {
 		0%{background-position:      50%               50%         ;}
@@ -81,6 +77,13 @@
             background-color: rgb(55,40,68);
             box-shadow: inset 2px -5px 10px rgba(55,40,68,0.4),
                         inset 0px -2px 5px #1b0e25;
+        }
+        .solarsystemback {
+            background-image: none;
+            background-color: #000;
+            animation: none;
+            background-repeat: no-repeat;
+            box-shadow: none;
         }
         .backfalsw {
             font-family: 'crunch';
@@ -119,6 +122,60 @@
             right: 15px;
             bottom: 15px;
             cursor: pointer;
+            border-bottom: solid 1px #ffffff;
+        }
+        .planets {
+            position: fixed;
+            height: 20px;
+            line-height: 20px;
+            text-align: left;
+            vertical-align: middle;
+            align-items: center;
+            display: flex;
+        }
+        .planets img {
+            height: 20px;
+            position: relative;
+        }
+        .satellite {
+            height: 50px;
+            position: absolute;
+            line-height: 60px;
+            text-align: center;
+            display: flex;
+            align-items: normal;
+        }
+        .satellite img {
+            top: 0px;
+            margin-top: 0px;
+            height: 10px;
+        }
+        @keyframes turn {
+            0% {
+                transform: rotate(0deg);
+            }
+            20% {
+                transform: rotate(72deg);
+            }
+            40% {
+                transform: rotate(144deg);
+            }
+            60% {
+                transform: rotate(216deg);
+            }
+            80% {
+                transform: rotate(288deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .solarsystem {
+            position: fixed;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            display: none;
         }
     </style>
 </head>
@@ -132,6 +189,31 @@
         <a href="./Ender_Elaina"><img src="./static/elainahat.png"></a>
         <p>Ender_Elaina</p>
     </div>
+    <span id="solarsystem" class="solarsystem">
+    <div class="planets" style="width: 60px; height: 5px; line-height: 5px; animation: turn 30s linear infinite reverse;"><img src="./static/outerwildsicons/150px-太阳站.png" style="height: 5px;"></div>
+    <div class="planets" id="sun" style="width: 50px; height: 50px; line-height: 50px; animation: turn 200s linear infinite; z-index: 9;"><img src="./static/outerwildsicons/150px-太阳.png" style="height: 50px;"></div>
+    <div class="planets" style="width: 125px; height: 30px; line-height: 30px; animation: turn 30s linear infinite -41s reverse;"><img src="./static/outerwildsicons/双星系统.png" style="height: 30px; animation: turn 10s linear infinite;"></div>
+    <div class="planets" style="width: 200px; animation: turn 60s linear infinite -30s reverse;">
+        <img src="./static/outerwildsicons/150px-木炉星.png" style="animation: turn 200s linear infinite reverse;">
+        <div class="satellite" style="width: 20px; animation: turn 100s linear infinite reverse -31s;">
+            <img src="./static/outerwildsicons/150px-废岩星.png" style="animation: turn 20s linear infinite;">
+        </div>
+    </div>
+    <div class="planets" style="width: 300px; animation: turn 80s linear infinite -50s reverse;">
+        <img src="./static/outerwildsicons/150px-碎空星.png" style="animation: turn 200s linear infinite reverse;">
+        <div class="satellite" style="width: 20px; animation: turn 60s linear infinite reverse -31s;">
+            <img src="./static/outerwildsicons/150px-空心灯.png" style="animation: turn 20s linear infinite;">
+        </div>
+    </div>
+    <div class="planets" style="width: 420px; height: 40px; line-height: 40px; animation: turn 150s linear infinite -65s reverse;">
+        <img src="./static/outerwildsicons/150px-深巨星.png" style="height: 40px; animation: turn 200s linear infinite reverse;">
+        <div class="satellite" style="width: 40px; animation: turn 40s linear infinite reverse -31s;">
+            <img src="./static/outerwildsicons/150px-轨道探测炮.png" style="rotate: 220deg;">
+        </div>
+    </div>
+    <div class="planets" style="width: 500px; height: 30px; line-height: 30px; animation: turn 180s linear infinite -140s reverse;"><img src="./static/outerwildsicons/150px-黑棘星.png" style="height: 30px; animation: turn 60s linear infinite;"></div>
+    <div class="planets" style="width: 600px; height: 10px; line-height: 10px; rotate: 160deg;"><img src="./static/outerwildsicons/150px-白洞站.png" style="height: 10px; rotate: 45deg;"></div>
+    </span>
     <div id="pager" class="pager-cover">NEXTPAGE</div>
 </body>
 <script>
@@ -171,17 +253,32 @@
     });
     var pages = 'cover';
     var pager = document.getElementById("pager");
+    pager.innerText = "Ender_Elaina"
     var elainatitle = document.getElementById("elainatitle");
+    var solarsystem = document.getElementById("solarsystem");
     pager.onclick = () => {
         if(pages === 'cover') {
             body.className = "enderelaina";
             cover.style.display = 'none';
             elainatitle.style.display = 'block';
             pager.style.textShadow = "1px 1px 0px #211d24, 1px -1px 0px #ca8df9";
+            pager.innerText = "<<Travellers>>";
             pages = 'enderelaina';
-        } else if (pages === 'enderelaina') {
-
         }
+        else if (pages === 'enderelaina') {
+            solarsystem.style.display = 'flex';
+            elainatitle.style.display = 'none';
+            body.className = "solarsystemback";
+            backfalsw.style.display = 'none';
+            pager.style.textShadow = 'none';
+            pager.innerText = "<<Undertale>>";
+            pager.style.fontFamily = 'Josefin Slab';
+            pages = 'solarsystem';
+        }
+    }
+    var sun = document.getElementById("sun");
+    sun.onclick = () => {
+        window.open('./Travellers/player.html','_self');
     }
 </script>
 </html>
