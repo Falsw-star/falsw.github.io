@@ -28,6 +28,7 @@
             height: 100%;
             width: 100%;
             display: flex;
+            overflow: hidden;
         }
         body {
             justify-content: center;
@@ -43,6 +44,7 @@
                         inset 0px -2px 5px #646770;
             text-align: center;
             color: azure;
+            overflow: hidden;
         }
         .cover {
             position: relative;
@@ -133,6 +135,15 @@
             align-items: center;
             display: flex;
         }
+        .planets-Interloper {
+            position: fixed;
+            height: 20px;
+            line-height: 20px;
+            vertical-align: middle;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
         .planets img {
             height: 20px;
             position: relative;
@@ -170,6 +181,25 @@
                 transform: rotate(360deg);
             }
         }
+        @keyframes Interloper {
+            0% {
+                transform: rotate(-40deg);
+            }
+            100% {
+                transform: rotate(320deg);
+            }
+        }
+        @keyframes Interloper-move {
+            0% {
+                width: 400px;
+            }
+            50% {
+                width: 100px;
+            }
+            100% {
+                width: 400px;
+            }
+        }
         .solarsystem {
             position: fixed;
             text-align: center;
@@ -181,6 +211,7 @@
 </head>
 <body id="body">
     <div id="backfalsw" class="backfalsw">FALSW</div>
+    <canvas id="stars" style="position: absolute; display: none;"></canvas>
     <div id="cover" class="cover">
         <p id="hitokoto_text">Falsw</p>
         <p style="text-align: right; font-size: medium;" id="hitokoto_from"></p>
@@ -191,7 +222,7 @@
     </div>
     <span id="solarsystem" class="solarsystem">
     <div class="planets" style="width: 60px; height: 5px; line-height: 5px; animation: turn 30s linear infinite reverse;"><img src="./static/outerwildsicons/150px-太阳站.png" style="height: 5px;"></div>
-    <div class="planets" id="sun" style="width: 50px; height: 50px; line-height: 50px; animation: turn 200s linear infinite; z-index: 9;"><img src="./static/outerwildsicons/150px-太阳.png" style="height: 50px;"></div>
+    <div class="planets" style="width: 50px; height: 50px; line-height: 50px; animation: turn 200s linear infinite; z-index: 9;"><img src="./static/outerwildsicons/150px-太阳.png" style="height: 50px; cursor: pointer;"></div>
     <div class="planets" style="width: 125px; height: 30px; line-height: 30px; animation: turn 30s linear infinite -41s reverse;"><img src="./static/outerwildsicons/双星系统.png" style="height: 30px; animation: turn 10s linear infinite;"></div>
     <div class="planets" style="width: 200px; animation: turn 60s linear infinite -30s reverse;">
         <img src="./static/outerwildsicons/150px-木炉星.png" style="animation: turn 200s linear infinite reverse;">
@@ -212,7 +243,12 @@
         </div>
     </div>
     <div class="planets" style="width: 500px; height: 30px; line-height: 30px; animation: turn 180s linear infinite -140s reverse;"><img src="./static/outerwildsicons/150px-黑棘星.png" style="height: 30px; animation: turn 60s linear infinite;"></div>
-    <div class="planets" style="width: 600px; height: 10px; line-height: 10px; rotate: 160deg;"><img src="./static/outerwildsicons/150px-白洞站.png" style="height: 10px; rotate: 45deg;"></div>
+    <div class="planets" style="width: 600px; rotate: 160deg;"><img src="./static/outerwildsicons/150px-白洞站.png" style="rotate: 45deg;"></div>
+    <div class="planets-Interloper" style="width: 600px; height: 10px; line-height: 10px; text-align: center; animation: Interloper 60s cubic-bezier(0.7, 0.15, 0.3, 0.85) infinite;">
+        <div class="planets" style="animation: Interloper-move 60s ease-in-out infinite; text-align: center; height: 10px; line-height: 10px;">
+            <img src="./static/outerwildsicons/150px-闯入者.png" style="height: 10px; animation: Interloper 60s cubic-bezier(0.7, 0.15, 0.3, 0.85) infinite reverse;">
+        </div>
+    </div>
     </span>
     <div id="pager" class="pager-cover">NEXTPAGE</div>
 </body>
@@ -256,6 +292,7 @@
     pager.innerText = "Ender_Elaina"
     var elainatitle = document.getElementById("elainatitle");
     var solarsystem = document.getElementById("solarsystem");
+    var stars = document.getElementById("stars");
     pager.onclick = () => {
         if(pages === 'cover') {
             body.className = "enderelaina";
@@ -270,6 +307,7 @@
             elainatitle.style.display = 'none';
             body.className = "solarsystemback";
             backfalsw.style.display = 'none';
+            stars.style.display = 'block';
             pager.style.textShadow = 'none';
             pager.innerText = "<<Undertale>>";
             pager.style.fontFamily = 'Josefin Slab';
@@ -279,6 +317,59 @@
     var sun = document.getElementById("sun");
     sun.onclick = () => {
         window.open('./Travellers/player.html','_self');
+    }
+</script>
+<script>
+    var starArr = new Array();
+
+    var Star = function (Color) {
+        this.x = windowWidth * Math.random();
+        this.y = 5000 * Math.random();
+        this.text = ".";
+        this.color = Color;
+        this.randomColor = function () {
+            var _r = Math.random();
+            if (_r < 0.5) {
+                this.color = "#333";
+            } else {
+                this.color = Color;
+            }
+        }
+    }
+
+    window.onload = function () {
+        var starsE = document.getElementById("stars");
+        windowWidth = window.innerWidth;
+        starsE.width = windowWidth;
+        starsE.height = window.innerHeight;
+        context = starsE.getContext("2d");
+
+        for (var i = 0; i < 3000; i++) {
+            var star = new Star("white");
+            star.randomColor();
+            starArr.push(star);
+        }
+        for (var i = 0; i < 500; i++) {
+            var star = new Star("orange");
+            star.randomColor();
+            starArr.push(star);
+        }
+        for (var i = 0; i < 500; i++) {
+            var star = new Star("rgb(64, 119, 163)");
+            star.randomColor();
+            starArr.push(star);
+        }
+
+        showStars();
+    }
+
+    function showStars() {
+        for (var n = 0; n < 5000; n++) {
+            starArr[n].randomColor();
+            context.fillStyle = starArr[n].color;
+            context.fillText(starArr[n].text, starArr[n].x, starArr[n].y);
+        }
+        setTimeout("showStars()", 100);
     }
 </script>
 </html>
