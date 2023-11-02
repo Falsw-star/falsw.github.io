@@ -344,7 +344,7 @@
         starsE.height = window.innerHeight;
         context = starsE.getContext("2d");
 
-        for (var i = 0; i < 3000; i++) {
+        for (var i = 0; i < 2000; i++) {
             var star = new Star("white");
             star.randomColor();
             starArr.push(star);
@@ -359,7 +359,11 @@
             star.randomColor();
             starArr.push(star);
         }
-
+        for (var i = 0; i < 2000; i++) {
+            var star = new Star("#2c2c2c8c");
+            star.randomColor();
+            starArr.push(star);
+        }
         showStars();
     }
 
