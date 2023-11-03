@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falsw的个人主页</title>
+    <link rel="icon" href="./static/False_star.PNG" sizes="16x16">
+    <script src="./js/jquery.min.js"></script>
+    <style>
+        html{
+            height: 100%;
+        }
+        body{
+            background-image: url(./static/bg.PNG);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center center;
+            border: 0px;
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+        }
+        ul {
+	        display:inline-block;
+	        list-style:none;
+        }
+        li {
+            border-left: 5px solid brown;
+        }
+        ul a {
+        	text-decoration:none;
+        	color: aliceblue;
+        	font-size:20px;
+        	font-weight:700;
+        	display:inline-block;
+        }
+        a {
+            text-decoration: none;
+        }
+        .btn {
+        	border:none;
+        	position:fixed;
+            z-index: 8;
+            left: -100px;
+            background-color: rgba(240, 248, 255, 0);
+        }
+        .click-bar {
+        	background-color: rgba(58, 59, 59, 0.8);
+        	width:200px;
+            height: 100%;
+        	position:fixed;
+        	left: -200px;
+            backdrop-filter: blur(20px);
+            z-index: 9;
+            border-right: solid 1px;
+            border-color: rgb(132, 132, 132);
+        }
+        .shortline{
+            background-color: brown;
+            height: 5px;
+            width: 60px;
+            display: inline-block;
+            transition: 1s;
+        }
+        .shortline:hover {
+            background-color: rgb(198, 6, 6);
+            box-shadow: 0px 0px 10px rgb(198, 6, 6),
+                        0px 0px 5px rgb(198, 6, 6),
+                        0px 0px 15px rgb(198, 6, 6);
+        }
+        .guide {
+            background-color: aliceblue;
+            height: 1000px;
+            width: 100%;
+            z-index: 7;
+            text-align: center;
+        }
+        .guide hr {
+            width: 50px;
+        }
+        .imgdiv {
+            display: inline-block;
+            height: 100px;
+            text-align:center;
+            vertical-align: middle;
+        }
+        .imgdiv a img {
+            height: 100px;
+            border-radius: 5px;
+        }
+        .introdiv {
+            display: inline-block;
+            width: 200px;
+            height: 100px;
+            text-align: left;
+            vertical-align: top;
+            padding-left: 5px;
+        }
+        .introdiv p {
+            font-size: larger;
+            margin-bottom: 0px;
+        }
+        .introdiv div {
+            font-size: smaller;
+        }
+        .mainshortline {
+            background-color: brown;
+            height: 5px;
+            width: 60px;
+            display: inline-block;
+            animation: breath 5s ease infinite;
+        }
+        @keyframes breath {
+            0% {
+                background-color: brown;
+                box-shadow: none;
+            }
+            50% {
+                background-color: rgb(198, 6, 6);
+                box-shadow: 0px 0px 5px rgb(198, 6, 6);
+            }
+            100% {
+                background-color: brown;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="btn"><img src="./static/tag.png" style="height: 30px;"></button>
+    <div class="click-bar">
+        <ul>
+            <h1 style="color: aliceblue;">导航</h1>
+            <hr>
+            <li><a href="#cover" class="scroll">&nbsp主页</a></li><br>
+            <li><a href="#about" class="scroll">&nbsp关于我</a></li><br>
+            <li><a href="#thiswebsite" class="scroll">&nbsp这个网站</a></li><br>
+            <li><a href="#guide" class="scroll">&nbsp工具箱</a></li><br>
+            <li><a href="./Travellers/player">&nbspTravellers</a></li>
+            <hr>
+        </ul>
+    </div>
+    <div id="cover" style="width: 100%; text-align: center; height: 100%; display: flex; justify-content: center; align-items: center;">
+        <div id="title" style="width: 100%; z-index: -1;">
+            <div style="color: azure; font-size: xx-large; text-shadow: 0px 0px 10px rgb(245, 245, 245);">&nbsp回归本心.</div>
+            <div class="mainshortline"></div>
+            <div style="color: rgba(193, 192, 191, 0.335);">这 里 是 F a l s w 的 个 人 主 页</div>
+        </div>            
+    </div>
+    <div id="about" style="background-color: aliceblue; height: 550px; z-index: 7; text-align: center;">
+        <div style="text-align: center; padding-top: 100px;"><h1>关于我</h1></div>
+        <div class="shortline"></div>
+        <p>本人初中生</p>
+        <p>计算机萌新</p>
+        <p>会一点python</p>
+        <p>喜欢科技、动漫、独立游戏</p>
+        <p>还有小一</p>
+        <p>C#、CSS学习ing</p>
+    </div>
+
+    <div id="thiswebsite" style="background-color:rgb(226, 232, 238); height: 750px; z-index: 7; text-align: center;">
+        <div style="text-align: center; padding-top: 100px;"><h1>这个网站</h1></div>
+        <div class="shortline"></div>
+        <p>如你所见</p>
+        <p>这里是Falsw的个人网站</p>
+        <p>网站不大</p>
+        <p>只是一时兴起罢了</p>
+        <p>接下来会给网站陆续加上很多好玩的qwq！</p>
+        <p>这个网站并非购买服务器</p>
+        <p>在一开始，是用内网穿透架设在本人家中的电脑上</p>
+        <p>感谢<a href="https://ngrok.cc/" style="color: darkblue;">sunny-ngrok</a>的强力支持！</p>
+        <p>但是现在我摆烂了</p>
+        <p>所以现在是使用GitHub Pages托管</p>
+        <p>感谢<a href="https://github.io/" style="color: darkblue;">Github.io</a>的支持！</p>
+    </div>
+
+    <div class="guide" id="guide">
+        <div style="text-align: center; padding-top: 100px;"><h1>工具箱</h1></div>
+        <div class="shortline"></div>
+        <p>这里收录了一些Falsw觉得很不错的网站和工具</p>
+        <hr>
+        <div>
+            <div class="imgdiv"><a href="https://github.com/svenstaro/miniserve"><img src="./static/miniserve.png"></a></div>
+            <div class="introdiv">
+                <p><a href="https://github.com/svenstaro/miniserve">Miniserve</a></p>
+                <div>Miniserve是一款非常简单实用的文件服务软件，带有index功能，可用于建站。</div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <div class="imgdiv"><a href="https://mikanani.me"><img src="./static/mikan-pic.png"></a></div>
+            <div class="introdiv">
+                <p><a href="https://mikanani.me">Mikan-蜜柑计划</a></p>
+                <div>蜜柑计划是一个番剧bt下载站，你也可以来此查看新番时间表。</div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <div class="imgdiv"><a href="https://zhutix.com/"><img src="./static/2021-x.png"></a></div>
+            <div class="introdiv">
+                <p><a href="https://zhutix.com/">致美化</a></p>
+                <div>致美化是一个致力于Windows美化的网站。“精彩的人生就是无休止地折腾。”</div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <div class="imgdiv"><a href="https://ngrok.com/"><img src="./static/ngrok.ico"></a></div>
+            <div class="introdiv">
+                <p><a href="https://ngrok.com/">Ngrok</a></p>
+                <div>Ngrok是一个非常快速的内网穿透软件。可惜免费用户不能绑定域名。</div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    网站正在建设中。。。。。。
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){     
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
+            });
+        });
+    </script>
+    <script>
+        var clickbar = $('.click-bar'),
+        button = $('.btn')
+        var state = 0
+
+        function Clickbar() {
+            if (state == 0) {
+                clickbar.animate({
+                'left': 0
+                });
+                button.animate({
+                    'left': 200
+                })
+                state = 1
+            } else {
+                clickbar.animate({
+                    'left': -clickbar.width()
+                });
+                button.animate({
+                    'left': -100
+                })
+                state = 0      
+            }
+        }
+        button.on('click', Clickbar)
+    </script>
+    <script>
+        var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        var analyser = audioCtx.createAnalyser();
+        source = audioCtx.createMediaStreamSource(stream);
+        source.connect(analyser);
+        analyser.connect(distortion);
+    </script>
+</body>
+</html>
