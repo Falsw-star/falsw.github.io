@@ -222,7 +222,7 @@
     </div>
     <span id="solarsystem" class="solarsystem">
     <div class="planets" style="width: 60px; height: 5px; line-height: 5px; animation: turn 30s linear infinite reverse;"><img src="./static/outerwildsicons/150px-太阳站.png" style="height: 5px;"></div>
-    <div class="planets" style="width: 50px; height: 50px; line-height: 50px; animation: turn 200s linear infinite; z-index: 9;"><img src="./static/outerwildsicons/150px-太阳.png" style="height: 50px; cursor: pointer;"></div>
+    <div class="planets" style="width: 50px; height: 50px; line-height: 50px; animation: turn 200s linear infinite; z-index: 9;"><a href="./Travellers/player.html" class="planets"><img src="./static/outerwildsicons/150px-太阳.png" style="height: 50px; cursor: pointer;"></a></div>
     <div class="planets" style="width: 125px; height: 30px; line-height: 30px; animation: turn 30s linear infinite -41s reverse;"><img src="./static/outerwildsicons/双星系统.png" style="height: 30px; animation: turn 10s linear infinite;"></div>
     <div class="planets" style="width: 200px; animation: turn 60s linear infinite -30s reverse;">
         <img src="./static/outerwildsicons/150px-木炉星.png" style="animation: turn 200s linear infinite reverse;">
@@ -313,10 +313,6 @@
             pager.style.fontFamily = 'Josefin Slab';
             pages = 'solarsystem';
         }
-    }
-    var sun = document.getElementById("sun");
-    sun.onclick = () => {
-        location.replace("./Travellers/player.html")
     }
 </script>
 <script>
