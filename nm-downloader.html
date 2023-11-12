@@ -8,7 +8,7 @@
 <body style="text-align: center;">
     <h1 style="margin-top: 20px;">网易云音乐下载 by Falsw</h1>
     <h3>在下面输入歌曲id</h3>
-    <input name="id" id="id" cols="30" rows="1">
+    <input id="input" cols="30" rows="1">
     <br><br>
     <button id="download">跳转下载</button>
     <div id="warning" style="font-size: larger; color: red;">---</div>
@@ -17,10 +17,10 @@
     var download = document.getElementById("download");
     var warning = document.getElementById("warning");
     download.onclick = () => {
-        var input = document.getElementById("id");
-        var link = 'http://nmapi.falsw.top/song/url?id=' + input.value;
+        var input = document.getElementById("input");
+        var link = 'https://nmapi.falsw.top/song/url?id=' + input.value;
         var xhr = new XMLHttpRequest();
-        xhr.open('get', link);
+        xhr.open('GET', link);
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 const data = JSON.parse(xhr.responseText);
