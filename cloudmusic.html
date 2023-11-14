@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://little.falsw.top/nm-downloader.html -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网易云</title>
+    <style>
+        body{
+            text-align: center;
+            background-color: black;
+            background-image:linear-gradient(rgb(201, 7, 0),black);
+            background-repeat: space;
+            color: white;
+        }
+        .this_box{
+            padding-top:10%;
+        }
+        .letgo{
+            border-radius: 5px;
+            font-size: 20px;
+            color:rgb(255, 119, 0);
+            padding:5px 30px 5px 30px;
+            border-color:rgb(255, 119, 0);
+            background-color: black;
+            border-style: 20px solid;
+            transition-duration: 0.6s;
+        }
+        .letgo:hover{
+            border-color: yellow;
+            color:yellow;
+        }
+        .something{
+            font-size: larger; 
+            color: white;
+        }
+        .hello_ender{
+            color:rgba(13, 13, 13, 0.603)
+        }
+        .sahjdjh{
+            border:none;
+            padding-top:10px;
+            border-bottom:2px rgb(115, 114, 114) solid;
+            background: none;
+            color:rgb(112, 111, 111);
+            font-size: 25px;
+            transition-duration: 0.5s;
+        }
+        .sahjdjh::placeholder{
+            font-size: 20px;
+            padding-bottom: 10px;
+            font-style: italic;
+        }
+        .sahjdjh:focus{
+            outline:none;
+            border-bottom:2px rgb(255, 255, 255) solid;
+            color:rgb(255, 255, 255) 
+        }
+    </style>
+</head>
+
+<body onkeydown="if(event.keyCode===13) document.all.download.click()">
+    <div class="this_box">
+        <h1 style="margin-top: 20px;" title="cute">网易云音乐下载 by Falsw</h1>
+        <h3><请在下面输入歌曲id></h3>
+        <input autofocus="true" pattern="^[0-9]*$" id="input" cols="64" rows="1" class="sahjdjh" size="20px" title="请在此输入歌曲ID...很抱歉仅有id，输入歌曲名字或者网址无效" placeholder="歌曲id..."/>
+        <br></br>
+        <button id="download" class="letgo" @keyup.enter="download" title="也可以按【Enter】哦">跳转下载</button>
+        <h1 id="warning" class="something">&emsp;</h1>
+        <h1 class="hello_ender">By Ender...?</h1>
+    </div>
+
+<script>
+    var input = document.getElementById("input");
+    var download = document.getElementById("download");
+    var warning = document.getElementById("warning");
+    download.onclick = () => {
+        var link = 'http://little.falsw.top/cloudmusic/url?id=' + input.value;
+        var xhr = new XMLHttpRequest();
+        // 现在是，彩蛋环节！
+        if (input.value == "rick" || input.value == "rickroll" || input.value == "what" || input.value == "waht") { 
+            // 你 被 骗 了
+            warning.innerText = '查找成功！ヾ(≧▽≦*)o 正在跳转...'
+            warning.style = "color:yellowgreen"
+            setTimeout("warning.innerText = '...等等什么-(＃°Д°)'", 699 )
+            setTimeout("window.location.href='https://www.bilibili.com/video/BV1GJ411x7h7/'", 700 )
+        }else if(input.value == ""){ 
+            // null
+            warning.innerText = "你还没输入呢～(　TロT)σ"
+            warning.style = "color:red;"
+        }else if(input.value == "falsw"){ 
+            // null
+            warning.innerText = "(/// ///)"
+            warning.style = "color:red;"
+        }else if (input.value == "arknights"){ 
+            // 明日方舟
+            warning.innerText = 'Successful! Doctor,Loading...'
+            warning.style = "color:lightblue"
+            setTimeout("window.location.href='https://monster-siren.hypergryph.com/'", 700 )
+        }else{
+            //没有彩蛋惹
+            warning.innerText = "查找中..."
+            warning.style = "color:white"
+            xhr.open('get', link);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        warning.innerText = "查找成功！ヾ(≧▽≦*)o 正在跳转！"
+                        warning.style = "color:lightgreen"
+                        var data = xhr.responseText;
+                        data = data.replace(/\"/g, "");
+                        window.open(data);
+                    } else if (xhr.status === 500) {
+                        warning.innerText = "没有这一首！请好好检查哪里不对！（；´д｀）ゞ"
+                        warning.style = "color:red;"
+                    } else {
+                        warning.innerText = "错误xwx"
+                    }
+                }
+            }
+        }
+        
+        xhr.send();
+}
+</script>
+<deepl-input-controller><template shadowrootmode="open"><link rel="stylesheet" href="chrome-extension://fancfknaplihpclbhbpclnmmjcjanbaf/build/content.css"><div><div class="dl-input-translation-container svelte-ju4595"><div></div></div></div></template></deepl-input-controller></body></html>

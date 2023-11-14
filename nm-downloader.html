@@ -11,16 +11,30 @@
     <input id="input" cols="30" rows="1">
     <br><br>
     <button id="download">跳转下载</button>
-    <div id="warning" style="font-size: larger; color: red;">---</div>
+    <div id="warning" style="font-size: larger; color: red;"></div>
 </body>
 <script>
+    var input = document.getElementById("input");
     var download = document.getElementById("download");
     var warning = document.getElementById("warning");
     download.onclick = () => {
-        const spawn = require('child_process').spawn
-app.get("process_data", (req, res) => {
-    spawn('python3', ['script.py'])
-})
+        var link = 'http://little.falsw.top/cloudmusic/url?id=' + input.value;
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', link);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    var data = xhr.responseText;
+                    data = data.replace(/\"/g, "");
+                    window.open(data);
+                } else if (xhr.status === 500) {
+                    warning.innerText = "没有这一首！请输入正确的id！"
+                } else {
+                    warning.innerText = "错误xwx"
+                }
+            }
+        }
+        xhr.send();
     }
 </script>
 </html>
