@@ -75,6 +75,7 @@ class pic(Resource):
         except:
             print('查无此曲🤔')
             picurl = 'None'
+        pic = picurl.replace('"','')
         print('正在返回链接：' + picurl)
         return picurl, 200
 

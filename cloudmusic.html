@@ -1,103 +1,316 @@
 <!DOCTYPE html>
 <!-- saved from url=(0042)http://little.falsw.top/nm-downloader.html -->
+<!--哇——看这个！
+
+=======================================================               
+   (    (              (     (  `                      
+   )\   )\        (    )\ )  )\))(     (      (        
+ (((_) ((_) (    ))\  (()/( ((_)()\   ))\  (  )\   (   
+ )\___  _   )\  /((_)  ((_))(_()((_) /((_) )\((_)  )\  
+((/ __|| | ((_)(_))(   _| | |  \/  |(_))( ((_)(_) ((_) 
+ | (__ | |/ _ \| || |/ _` | | |\/| || || |(_-<| |/ _|  
+  \___||_|\___/ \_,_|\__,_| |_|  |_| \_,_|/__/|_|\__|  
+                                                       
+=======================================================                                                                                                                                          
+-->
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>网易云</title>
+    <title>CloudMusic</title>
     <style>
         body{
             text-align: center;
-            background-color: black;
-            background-image:linear-gradient(rgb(201, 7, 0),black);
-            background-repeat: space;
+            background-color: rgb(56, 56, 56);
+            background-image:linear-gradient(rgb(201, 7, 0),rgb(56, 56, 56));
+            background-repeat:repeat-x;
             color: white;
+            user-select: none;
         }
         .this_box{
             padding-top:10%;
         }
+
+        /* 查询按钮 */
         .letgo{
             border-radius: 5px;
             font-size: 20px;
-            color:rgb(255, 119, 0);
+            color:rgb(207, 104, 0);
             padding:5px 30px 5px 30px;
-            border-color:rgb(255, 119, 0);
-            background-color: black;
+            border-color:rgb(207, 104, 0);
+            background: black;
             border-style: 20px solid;
-            transition-duration: 0.6s;
+            transition-duration: 0.1s;
         }
         .letgo:hover{
             border-color: yellow;
             color:yellow;
         }
+        .letgo:active{/* 按下去! */
+            border-color: rgb(255, 204, 0);
+            color:rgb(255, 204, 0);
+        } 
+        /* 显示状态（一般情况下是空哦） */
         .something{
             font-size: larger; 
             color: white;
         }
+
+        /* 你好Ender :) */
         .hello_ender{
-            color:rgba(13, 13, 13, 0.603)
+            color:rgba(13, 13, 13, 0.603);
+            z-index: 9999;
+            bottom:0px;
+            left:10px;
+            position: fixed;
         }
+
+        /* class乱输一通的文本框 */
         .sahjdjh{
             border:none;
             padding-top:10px;
             border-bottom:2px rgb(115, 114, 114) solid;
             background: none;
-            color:rgb(112, 111, 111);
+            color:rgb(255, 255, 255);
             font-size: 25px;
             transition-duration: 0.5s;
         }
-        .sahjdjh::placeholder{
+        .sahjdjh::placeholder{ /* 文本框的内置文本 */
             font-size: 20px;
             padding-bottom: 10px;
             font-style: italic;
         }
-        .sahjdjh:focus{
+        .sahjdjh:focus{ /* 被锁定的 */
             outline:none;
             border-bottom:2px rgb(255, 255, 255) solid;
-            color:rgb(255, 255, 255) 
+            
         }
+
+        /* 音乐卡片 */
+        .music_info{
+            border:3px solid rgb(255, 255, 253);
+            border-radius: 10px 10px 10px 10px;
+            margin:0 auto;
+            justify-content: center;
+            align-items: center;
+            width: 450px;
+            overflow: hidden;
+            text-align: left;
+            display:inline-block;
+            box-shadow: 1px 1px 25px black;
+            transition-duration: 0.5s;
+        }
+        .music_info:hover{
+            border-color: rgb(255, 255, 0);
+            color: rgb(255, 255, 0);
+            box-shadow: 1px 1px 10px rgb(255, 255, 0);
+        }
+        .musicname{ /* 歌曲名字酱 */
+            font-size:20px;
+            margin-bottom: 0;
+        }
+        .musicmaker{ /* 制作者酱 */
+            font-size: 12px;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+        }
+        .musicimg img{ /* 封面 */
+            padding: 15px;
+            width: 100px;
+            float: left;
+        }
+        /* 这是选择项！*/
+        .theselect{
+            appearance: none;
+            border: 5px white solid;
+            font-size: 9px;
+            border-radius: 100%;
+            transition: 0.3s all linear;
+            padding:1px;
+            position: relative;
+            align-items: center;
+            box-shadow: none;
+            text-shadow: none;
+        }
+        .theselect:checked{
+            border: 5px red double;
+            box-shadow: 1px 1px 15px red;
+            text-shadow: 1px 1px 15px red;
+        }
+        .falswandlittlecute{
+            margin-top: 20px;
+            transition-duration: 0.5s;
+        }
+        .falswandlittlecute:hover{
+            text-shadow: 1px 1px 5px rgb(255, 251, 251);
+        }
+        .isfalsw{
+            position: fixed;
+            right: 10px;
+            bottom: 0px;
+            z-index: 9999;
+            width: 25px;
+            user-select: none;
+        }
+        .isfalsw:hover{
+            content: url(./static/falswcute2.png);
+        }   
+        .islittle{
+            position: fixed;
+            right: 10px;
+            bottom: 0px;
+            z-index: 9999;
+            width: 25px;
+            visibility: hidden;
+            user-select: none;
+        }
+        .islittle:hover{
+            content: url(./static/littlecute1.png);
+        }   
     </style>
 </head>
-
-<body onkeydown="if(event.keyCode===13) document.all.download.click()">
+<body onkeydown="if(event.keyCode===13) document.all.finding.click()" onloadstart="timebackground()">
     <div class="this_box">
-        <h1 style="margin-top: 20px;" title="cute">网易云音乐下载 by Falsw</h1>
+        <h1 title="cute" class="falswandlittlecute" id="egg">[ 网易云音乐下载 by Falsw ]</h1>
         <h3><请在下面输入歌曲id></h3>
-        <input autofocus="true" pattern="^[0-9]*$" id="input" cols="64" rows="1" class="sahjdjh" size="20px" title="请在此输入歌曲ID...很抱歉仅有id，输入歌曲名字或者网址无效" placeholder="歌曲id..."/>
+        <input autofocus="true" id="input" cols="64" rows="1" class="sahjdjh" title="请在此输入歌曲ID...很抱歉仅有id，输入歌曲名字或者网址无效" placeholder="在这里输入..."/>
+        <input type="radio" value="0" name="select" id="cid" class="theselect" checked="true"><label for="cid"> ID查询</label>  
+        <input type="radio" value="1" name="select" id="cname" class="theselect"><label for="cname"> 歌名查询</label>
         <br></br>
-        <button id="download" class="letgo" @keyup.enter="download" title="也可以按【Enter】哦">跳转下载</button>
-        <h1 id="warning" class="something">&emsp;</h1>
-        <h1 class="hello_ender">By Ender...?</h1>
+        <button id="finding" class="letgo" title="也可以按【Enter】哦">查 询</button>
+        <h1 id="warning" class="something">&nbsp;</h1>
     </div>
-
+    <div class="music_info" id="downloadnow" title="直接点击即可下载哦 :d">
+        <div class="musicimg">
+            <img src="./static/falsw_low.png" draggable="false" id="thisimg">
+        </div>
+        <div class="musictitle">
+            <p class="musicname">这是一个超级无敌长到看起来很长的歌曲标题</p>
+            <p class="musicmaker">这是一个超级长的副标题，Falsw和little都可爱哦！除了ender呐</p>
+        </div>
+    </div>
+    <p class="hello_ender">呜呜花了好长时间终于搞定惹 | Falsw和little最可爱！</p>
+    <img class="isfalsw" id="thiscutefalsw" src="./static/falswcute1.png" title="Hey there!"></img>
+    <img class="islittle" id="thiscutelittle" src="./static/littlecute2.png" title="Hey there!"></img>
 <script>
     var input = document.getElementById("input");
-    var download = document.getElementById("download");
+    var finding = document.getElementById("finding");
     var warning = document.getElementById("warning");
-    download.onclick = () => {
-        var link = 'http://little.falsw.top/cloudmusic/url?id=' + input.value;
-        var xhr = new XMLHttpRequest();
-        // 现在是，彩蛋环节！
-        if (input.value == "rick" || input.value == "rickroll" || input.value == "what" || input.value == "waht") { 
-            // 你 被 骗 了
-            warning.innerText = '查找成功！ヾ(≧▽≦*)o 正在跳转...'
-            warning.style = "color:yellowgreen"
-            setTimeout("warning.innerText = '...等等什么-(＃°Д°)'", 699 )
-            setTimeout("window.location.href='https://www.bilibili.com/video/BV1GJ411x7h7/'", 700 )
-        }else if(input.value == ""){ 
+    var geting = document.getElementById("downloadnow");
+    var thismusicbox = document.getElementById("music_info");
+    var this_your_select = 0;    
+    var where_the_password = 0;
+    var thisyourradio = document.getElementsByName("select");
+
+    // 彩[蛋]开关
+    egg.onclick = () => {
+        var littleyouarehere = document.getElementById("thiscutelittle");
+        var falswyouarehere = document.getElementById("thiscutefalsw");
+        if(where_the_password == 0){
+            where_the_password = 1;
+            falswyouarehere.style = "visibility:hidden;"
+            littleyouarehere.style = "visibility:visible;"
+            alert("好像触发了什么奇奇怪怪的东西(´･ω･`)?");
+            console.log("Hey!\nYou're here!\nSo I think is time to give you something passcode↓")
+            console.error("GET https://vdse.bdstatic.com/192d9a98d782d9c74c96f09db9378d93.mp4 /passcode.txt 500 (INTERNAL SERVER ERROR)")
+            console.log("Oh,I'm sorry")
+            return;
+        }else if(where_the_password == 1){
+            littleyouarehere.style = "visibility:hidden;"
+            falswyouarehere.style = "visibility:visible;"
+            alert("好像关掉了什么奇奇怪怪的东西o((>ω< ))o");
+            console.clear();
+            where_the_password = 0;
+            return;
+        }
+    }
+    function timebackground(){
+        var istime = new Date();
+        var toDoingSomething = istime.getHours();
+        if(toDoingSomething >= 18 && toDoingSomething <= 7){
+            document.body.style = "background-color:rgb(58, 58, 58)";
+            document.body.style = "background-image:linear-gradient(rgb(201, 7, 0),rgb(58, 58, 58);";
+        }
+    }
+    finding.onclick = () => {
+        // 是歌曲id呢还是歌曲名字呢（0=ID 1=名字）
+        for (var i = 0; i < thisyourradio.length; i++) {
+            if (thisyourradio[i].checked) {
+                this_your_select = thisyourradio[i].value;
+                break;
+            }
+        }
+        warning.style = "color:white;";
+        warning.innerText = "正在读取...";
+        if(input.value == ""){ 
             // null
             warning.innerText = "你还没输入呢～(　TロT)σ"
             warning.style = "color:red;"
-        }else if(input.value == "falsw"){ 
-            // null
-            warning.innerText = "(/// ///)"
-            warning.style = "color:red;"
-        }else if (input.value == "arknights"){ 
-            // 明日方舟
-            warning.innerText = 'Successful! Doctor,Loading...'
-            warning.style = "color:lightblue"
-            setTimeout("window.location.href='https://monster-siren.hypergryph.com/'", 700 )
+        }else if(where_the_password == 1){ 
+            // 检测彩蛋有没有开，如果开了那就好玩啦！
+            if (input.value == "rick" || input.value == "rickroll" || input.value == "what" || input.value == "waht") { 
+                // 你 被 骗 了
+                warning.innerText = '查找成功！ヾ(≧▽≦*)o 正在跳转...'
+                warning.style = "color:yellowgreen"
+                setTimeout("warning.innerText = '...等等什么-(＃°Д°)'", 699 )
+                setTimeout("window.location.href='https://www.bilibili.com/video/BV1GJ411x7h7/'", 700 )
+            }else if(input.value == "falsw" || input.value == "little"){ 
+                // falsw和little可爱耶
+                warning.innerText = "(/// ///)"
+                warning.style = "color:red;"
+            }else if (input.value == "arknights" || input.value == "arknight"){ 
+                // 明日方舟
+                warning.innerText = 'Successful! Doctor,Loading...'
+                warning.style = "color:lightblue"
+                setTimeout("window.location.href='https://monster-siren.hypergryph.com/'", 700 )
+            }else if (input.value == "miku" || input.value == "Miku"){ 
+                // 明日方舟
+                warning.innerText = '行きましょう！'
+                warning.style = "color:lightblue"
+                setTimeout("window.location.href='https://aidn.jp/mikutap/'", 700 )
+            }
         }else{
+            // 好，开始正题！
+            if(this_your_select == "0"){
+                // 如果是歌曲ID
+                if(isNaN(input.value)){
+                    warning.innerText = "必须是数字！(ノ｀Д)ノ"
+                    warning.style = "color:red;"
+                }else{
+                    var imgink = 'http://little.falsw.top/cloudmusic/pic?id=' + input.value;
+                    var imgg = new XMLHttpRequest();
+                    imgg.open('get', imgink);
+                    imgg.onreadystatechange = function (){
+                        if (imgg.readyState === 4) {
+                            if (imgg.status === 200) {
+                                var imglink = imgg.responseText;
+                                realimg = imglink.replace(/\"/g, "");
+                                document.getElementById("thisimg").src = realimg;
+                                warning.innerText = "完成！";
+                                warning.style = "color:green;";
+                                document.getElementById("music_info").style.visibility = "visible";
+                            } else if (imgg.status === 500) {
+                                warning.innerText = "没有这一首！请好好检查哪里不对！（；´д｀）ゞ"
+                                warning.style = "color:red;"
+                            } else {
+                            warning.innerText = "错误xwx"
+                            }
+                        }
+                    }
+                    imgg.send();
+                }
+            }else{
+                // 如果是歌曲名字
+                warning.style = "color:white;";
+                warning.innerText = "尚未完工..."; // 哦抱歉我的朋友，还没完工呢 :(
+            }
+        }
+        
+    }
+    geting.onclick = () => {
+        var link = 'http://little.falsw.top/cloudmusic/url?id=' + input.value;
+        var xhr = new XMLHttpRequest();
             //没有彩蛋惹
             warning.innerText = "查找中..."
             warning.style = "color:white"
@@ -105,7 +318,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        warning.innerText = "查找成功！ヾ(≧▽≦*)o 正在跳转！"
+                        warning.innerText = "查找成功！ヾ(≧▽≦*)o 点击下方卡片即可下载哦！"
                         warning.style = "color:lightgreen"
                         var data = xhr.responseText;
                         data = data.replace(/\"/g, "");
@@ -118,9 +331,6 @@
                     }
                 }
             }
+            xhr.send();
         }
-        
-        xhr.send();
-}
 </script>
-<deepl-input-controller><template shadowrootmode="open"><link rel="stylesheet" href="chrome-extension://fancfknaplihpclbhbpclnmmjcjanbaf/build/content.css"><div><div class="dl-input-translation-container svelte-ju4595"><div></div></div></div></template></deepl-input-controller></body></html>
